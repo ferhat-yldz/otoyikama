@@ -38,8 +38,13 @@ export default function IletisimPage() {
                                 </h2>
                                 <div className="space-y-6">
                                     {/* Address */}
-                                    <div className="flex items-start gap-4 p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)]">
-                                        <div className="w-14 h-14 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] flex-shrink-0">
+                                    <a
+                                        href={SITE_CONFIG.maps.directionsUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-start gap-4 p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[var(--color-primary)]/30 transition-colors group"
+                                    >
+                                        <div className="w-14 h-14 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] flex-shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
                                             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -47,9 +52,9 @@ export default function IletisimPage() {
                                         </div>
                                         <div>
                                             <h3 className="font-semibold text-[var(--color-text-primary)] mb-2">Adres</h3>
-                                            <p className="text-[var(--color-text-muted)]">{SITE_CONFIG.contact.address}</p>
+                                            <p className="text-[var(--color-text-muted)] group-hover:text-[var(--color-primary)] transition-colors">{SITE_CONFIG.contact.address}</p>
                                         </div>
-                                    </div>
+                                    </a>
 
                                     {/* Phone */}
                                     <a

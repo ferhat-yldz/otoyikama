@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { SITE_CONFIG } from '@/constants';
 
 export function About() {
@@ -72,25 +73,17 @@ export function About() {
                     {/* Right - Visual */}
                     <div className="relative">
                         {/* Main Card */}
-                        <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-dark)]">
-                            {/* Placeholder for image - will be replaced with CMS image */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="text-center text-white p-8">
-                                    <div className="text-6xl mb-4">🚗</div>
-                                    <p className="text-lg font-medium opacity-90">
-                                        Profesyonel Araç Bakımı
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Overlay Pattern */}
-                            <div
-                                className="absolute inset-0 opacity-10"
-                                style={{
-                                    backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                                    backgroundSize: '20px 20px',
-                                }}
+                        <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
+                            <Image
+                                src="/images/about/foto1.jpg"
+                                alt="BETSAN Oto Yıkama - Profesyonel Araç Bakımı"
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                priority
                             />
+                            {/* Overlay for better text readability if needed */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                         </div>
 
                         {/* Floating Stats Card */}

@@ -124,11 +124,31 @@ function JsonLdSchema() {
     priceRange: '₺₺',
     currenciesAccepted: 'TRY',
     paymentAccepted: 'Cash, Credit Card',
-    areaServed: {
-      '@type': 'City',
-      name: SITE_CONFIG.contact.city,
+    areaServed: [
+      {
+        '@type': 'City',
+        name: 'Malatya',
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Battalgazi',
+      },
+    ],
+    // Google Maps bağlantısı
+    hasMap: 'https://maps.app.goo.gl/WBHMAWpAYYJcYXW78',
+    // Google yorumlarından puan
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '15',
+      bestRating: '5',
+      worstRating: '1',
     },
-    sameAs: [SITE_CONFIG.social.instagram, SITE_CONFIG.social.facebook],
+    sameAs: [
+      SITE_CONFIG.social.instagram,
+      SITE_CONFIG.social.facebook,
+      'https://maps.app.goo.gl/WBHMAWpAYYJcYXW78',
+    ],
   };
 
   return (

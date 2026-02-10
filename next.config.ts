@@ -1,7 +1,10 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  // Görsel Optimizasyonu
+  // Vercel için SSR/SSG modu (output: 'export' kaldırıldı)
+  // cPanel için tekrar static export gerekirse: output: 'export',
+
+  // Görsel Optimizasyonu (Vercel destekler)
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -24,29 +27,7 @@ const nextConfig: NextConfig = {
     // Optimizasyon
     optimizePackageImports: ['lucide-react'],
   },
-
-  // Headers - Güvenlik ve Performans
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-        ],
-      },
-    ];
-  },
 };
 
 export default nextConfig;
+

@@ -4,3 +4,4 @@
  */
 
 export { WhatsAppButton } from './WhatsAppButton';
+export { ScrollReveal } from './ScrollReveal';

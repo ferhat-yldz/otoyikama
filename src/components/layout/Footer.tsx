@@ -160,9 +160,14 @@ export function Footer() {
                                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                                     />
                                 </svg>
-                                <span className="text-[var(--color-text-muted)]">
+                                <a
+                                    href={SITE_CONFIG.maps.directionsUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors"
+                                >
                                     {SITE_CONFIG.contact.address}
-                                </span>
+                                </a>
                             </li>
                             <li className="flex items-center gap-3">
                                 <svg
@@ -231,25 +236,18 @@ export function Footer() {
             {/* Bottom Bar */}
             <div className="border-t border-[var(--color-border)]">
                 <div className="container py-6">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p className="text-sm text-[var(--color-text-muted)]">
-                            © {currentYear} {SITE_CONFIG.name}. Tüm hakları saklıdır.
-                        </p>
-                        <div className="flex gap-6 text-sm">
-                            <Link
-                                href="/gizlilik-politikasi"
-                                className="text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors"
-                            >
-                                Gizlilik Politikası
-                            </Link>
-                            <Link
-                                href="/kullanim-sartlari"
-                                className="text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors"
-                            >
-                                Kullanım Şartları
-                            </Link>
-                        </div>
-                    </div>
+                    <p className="text-sm text-[var(--color-text-muted)] text-center">
+                        © {currentYear} {SITE_CONFIG.name}. Tüm hakları saklıdır.
+                    </p>
+                </div>
+            </div>
+
+            {/* Web Design Credit */}
+            <div className="border-t border-[var(--color-border)]">
+                <div className="container py-4">
+                    <p className="text-xs text-[var(--color-text-muted)] text-center">
+                        Web Tasarım: Betsan Yazılım Teknoloji Mühendislik San. Ve Tic. Ltd. Şti.
+                    </p>
                 </div>
             </div>
         </footer>

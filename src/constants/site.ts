@@ -15,7 +15,7 @@ export const SITE_CONFIG = {
     contact: {
         phone: "0533 067 66 46",
         phoneRaw: "+905330676646", // WhatsApp ve tel: linkleri için
-        email: "info@betsanotoyikama.com",
+        email: "info@malatyaotoyıkama.com",
         address: "Çavuşoğlu, Dekor Sokak No:16, 44000 Yeşilyurt/Malatya",
         city: "Malatya",
         district: "Yeşilyurt",
@@ -39,6 +39,7 @@ export const SITE_CONFIG = {
     // Google Maps
     maps: {
         embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.5!2d38.3!3d38.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDIxJzAwLjAiTiAzOMKwMTgnMDAuMCJF!5e0!3m2!1str!2str!4v1234567890",
+        directionsUrl: "https://maps.app.goo.gl/XocF25jURahs5TXr8",
         coordinates: {
             lat: 38.35,
             lng: 38.3,
@@ -63,7 +64,7 @@ export const SITE_CONFIG = {
     },
 
     // Domain
-    url: "https://betsanotoyikama.com",
+    url: "https://malatyaotoyıkama.com",
 } as const;
 
 // Hizmetler Listesi
@@ -115,6 +116,36 @@ export const SERVICES = [
         title: "Jant Temizliği",
         shortDescription: "Fren tozu, kir ve pas gibi birikintilerden arındırma.",
         icon: "🎡",
+    },
+    {
+        id: "far-temizligi",
+        title: "Far Temizliği",
+        shortDescription: "Matlaşmış ve sararmış farların parlatılması ve yenilenmesi.",
+        icon: "💡",
+    },
+    {
+        id: "klima-temizligi",
+        title: "Klima Temizliği",
+        shortDescription: "Klima sisteminin dezenfekte edilmesi ve kötü kokuların giderilmesi.",
+        icon: "❄️",
+    },
+    {
+        id: "arac-alti-yikama",
+        title: "Araç Altı Yıkama",
+        shortDescription: "Şasi ve araç altının tuz, çamur ve kirlerden arındırılması.",
+        icon: "🚙",
+    },
+    {
+        id: "cam-kirec-lekesi-temizligi",
+        title: "Cam Kireç Lekesi Temizliği",
+        shortDescription: "Camlardaki inatçı kireç lekelerinin profesyonelce temizlenmesi.",
+        icon: "🪟",
+    },
+    {
+        id: "zift-temizligi",
+        title: "Zift Temizliği",
+        shortDescription: "Araç boyasına zarar vermeden zift ve asfalt kalıntılarının temizlenmesi.",
+        icon: "🧽",
     },
 ] as const;
 

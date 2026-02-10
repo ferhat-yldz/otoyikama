@@ -20,6 +20,13 @@ const navLinks = [
             { label: 'Pasta Cila', href: '/hizmetlerimiz/pasta-cila' },
             { label: 'Seramik Kaplama', href: '/hizmetlerimiz/seramik-kaplama' },
             { label: 'Koltuk Temizleme', href: '/hizmetlerimiz/koltuk-temizleme' },
+            { label: 'Motor Yıkama', href: '/hizmetlerimiz/motor-yikama' },
+            { label: 'Jant Temizliği', href: '/hizmetlerimiz/jant-temizligi' },
+            { label: 'Far Temizliği', href: '/hizmetlerimiz/far-temizligi' },
+            { label: 'Klima Temizliği', href: '/hizmetlerimiz/klima-temizligi' },
+            { label: 'Araç Altı Yıkama', href: '/hizmetlerimiz/arac-alti-yikama' },
+            { label: 'Cam Kireç Lekesi Temizliği', href: '/hizmetlerimiz/cam-kirec-lekesi-temizligi' },
+            { label: 'Zift Temizliği', href: '/hizmetlerimiz/zift-temizligi' },
         ],
     },
     { label: 'Galeri', href: '/galeri' },
@@ -256,7 +263,7 @@ export function Header() {
                                             </svg>
                                         </button>
                                         {/* Alt menü - Accordion */}
-                                        <div className={`overflow-hidden transition-all duration-300 ${mobileSubmenuOpen === link.href ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                        <div className={`overflow-hidden transition-all duration-300 ${mobileSubmenuOpen === link.href ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
                                             <div className="pl-4 mt-1 space-y-1 border-l-2 border-[var(--color-border)] ml-3">
                                                 {link.children.map(child => (
                                                     <Link

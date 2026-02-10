@@ -1,0 +1,8 @@
+# BETSAN OTO YIKAMA - Robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+
+Sitemap: https://malatyaotoyıkama.com/sitemap.xml
