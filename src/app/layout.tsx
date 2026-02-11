@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, Manrope } from 'next/font/google';
 import './globals.css';
-import { SITE_CONFIG } from '@/constants';
+import { SITE_CONFIG, SERVICES } from '@/constants';
 import Loading from '@/components/ui/Loading';
 
 const playfair = Playfair_Display({
@@ -25,13 +25,6 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_CONFIG.name}`,
   },
   description: SITE_CONFIG.description,
-  keywords: [...SITE_CONFIG.seo.keywords],
-
-  // Yazar ve Yayıncı
-  authors: [{ name: SITE_CONFIG.name }],
-  creator: SITE_CONFIG.name,
-  publisher: SITE_CONFIG.name,
-
   // Robots
   robots: {
     index: true,
@@ -93,13 +86,19 @@ export const viewport: Viewport = {
 function JsonLdSchema() {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'AutoWash',
-    '@id': SITE_CONFIG.url,
+    '@type': ['AutoWash', 'AutomotiveBusiness', 'LocalBusiness'],
+    '@id': `${SITE_CONFIG.url}/#business`,
     name: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
     url: SITE_CONFIG.url,
     telephone: SITE_CONFIG.contact.phone,
     email: SITE_CONFIG.contact.email,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_CONFIG.url}/images/LOGO.png`,
+      width: '512',
+      height: '512',
+    },
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Çavuşoğlu, Dekor Sokak No:16',
@@ -127,7 +126,10 @@ function JsonLdSchema() {
         closes: '18:00',
       },
     ],
-    image: `${SITE_CONFIG.url}/og-image.jpg`,
+    image: [
+      `${SITE_CONFIG.url}/og-image.jpg`,
+      `${SITE_CONFIG.url}/images/LOGO.png`
+    ],
     priceRange: '₺₺',
     currenciesAccepted: 'TRY',
     paymentAccepted: 'Cash, Credit Card',
@@ -138,11 +140,29 @@ function JsonLdSchema() {
       },
       {
         '@type': 'AdministrativeArea',
-        name: 'Battalgazi',
+        name: 'Yeşilyurt',
       },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Battalgazi',
+      }
     ],
+    // Hizmet Kataloğu
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Oto Bakım ve Yıkama Hizmetleri',
+      itemListElement: SERVICES.map((service, index) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.title,
+          description: service.shortDescription,
+        },
+        position: index + 1
+      }))
+    },
     // Google Maps bağlantısı
-    hasMap: 'https://maps.app.goo.gl/WBHMAWpAYYJcYXW78',
+    hasMap: SITE_CONFIG.maps.directionsUrl || 'https://maps.app.goo.gl/XocF25jURahs5TXr8',
     // Google yorumlarından puan
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -154,6 +174,7 @@ function JsonLdSchema() {
     sameAs: [
       SITE_CONFIG.social.instagram,
       SITE_CONFIG.social.facebook,
+      SITE_CONFIG.social.whatsapp,
       'https://maps.app.goo.gl/WBHMAWpAYYJcYXW78',
     ],
   };
@@ -187,7 +208,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/images/LOGO.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className="font-sans bg-[var(--color-bg)] text-[var(--color-text-primary)] antialiased selection:bg-[var(--color-primary)] selection:text-white overflow-x-hidden">
+      <body
+        suppressHydrationWarning={true}
+        className="font-sans bg-[var(--color-bg)] text-[var(--color-text-primary)] antialiased selection:bg-[var(--color-primary)] selection:text-white overflow-x-hidden min-h-screen"
+      >
         <Loading />
         <Suspense fallback={null}>
           <GoogleAnalytics />

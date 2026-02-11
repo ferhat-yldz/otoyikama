@@ -139,6 +139,13 @@ export function Footer() {
                         </Link>
                     </div>
                 </div>
+
+                {/* Company Credit */}
+                <div className="mt-8 text-center">
+                    <p className="text-[10px] text-[var(--color-text-muted)] font-light opacity-50 uppercase tracking-[0.2em]">
+                        WebSite : Betsan Yazılım Teknoloji Mühendislik San. Ve Tic. Ltd. Şti
+                    </p>
+                </div>
             </div>
         </footer>
     );

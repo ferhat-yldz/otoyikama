@@ -245,7 +245,7 @@ const serviceDetails: Record<string, {
         price: '₺150 - ₺300',
     },
     'arac-alti-yikama': {
-        description: 'Araç alt aksamının, şasinin tuz, çamur, kir ve korozif maddelerden arındırılması işlemidir. Özellikle kış aylarında tuz hasarını önlemek için önemlidir.',
+        description: 'Araç alt aksamının, şasenin tuz, çamur, kir ve korozif maddelerden arındırılması işlemidir. Özellikle kış aylarında tuz hasarını önlemek için önemlidir.',
         features: [
             'Şasi temizliği',
             'Tuz giderme',
