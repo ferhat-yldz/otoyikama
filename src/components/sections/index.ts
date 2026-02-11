@@ -1,9 +1,9 @@
-/**
- * Section Components Barrel Export
- * Hero, Services, Gallery gibi sayfa bölümleri
- */
-
 export { Hero } from './Hero';
+export { ExtraordinaryHero } from './ExtraordinaryHero';
 export { Services } from './Services';
+export { StackedServices } from './StackedServices';
 export { About } from './About';
-export { Contact } from './Contact';
+export * from './Contact';
+export * from './Features';
+export * from './Stats';
+export * from './CTA';

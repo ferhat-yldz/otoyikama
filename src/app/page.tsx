@@ -1,5 +1,5 @@
 import { Header, Footer } from '@/components/layout';
-import { Hero, Services, About, Contact } from '@/components/sections';
+import { ExtraordinaryHero, StackedServices, Services, About, Contact, Features, Stats, CTA } from '@/components/sections';
 import { WhatsAppButton, ScrollReveal } from '@/components/ui';
 
 export default function HomePage() {
@@ -7,16 +7,14 @@ export default function HomePage() {
     <>
       <Header />
       <main>
-        <Hero />
-        <ScrollReveal direction="up">
-          <Services />
-        </ScrollReveal>
+        <ExtraordinaryHero />
+        <Stats />
+        <Features />
+        <StackedServices />
         <ScrollReveal direction="up" delay={100}>
           <About />
         </ScrollReveal>
-        <ScrollReveal direction="up" delay={100}>
-          <Contact />
-        </ScrollReveal>
+        <CTA />
       </main>
       <Footer />
       <WhatsAppButton />

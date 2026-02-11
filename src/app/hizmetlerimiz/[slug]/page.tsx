@@ -3,7 +3,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Header, Footer } from '@/components/layout';
 import { WhatsAppButton } from '@/components/ui';
+import NextImage from 'next/image';
 import { SITE_CONFIG, SERVICES } from '@/constants';
+import { Manrope, Playfair_Display } from 'next/font/google';
+
+const playfair = Playfair_Display({ subsets: ['latin'] });
+const manrope = Manrope({ subsets: ['latin'] });
 
 // Hizmet detayları (CMS'e taşınacak)
 const serviceDetails: Record<string, {
@@ -297,10 +302,10 @@ const serviceDetails: Record<string, {
             'Bekleme süresi',
             'Yumuşak temizleme',
             'Yüzey kontrolü',
-            'Parlatma ve koruma',
+            'Koruma uygulaması',
         ],
-        duration: '30-60 dakika',
-        price: '₺150 - ₺300',
+        duration: '30-45 dakika',
+        price: '₺100 - ₺200',
     },
 };
 
@@ -314,186 +319,174 @@ export async function generateStaticParams() {
 // Dynamic metadata
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
-    const service = SERVICES.find(s => s.id === slug);
-
-    if (!service) {
-        return {
-            title: 'Hizmet Bulunamadı',
-        };
-    }
+    const service = SERVICES.find((s) => s.id === slug);
+    if (!service) return { title: 'Hizmet Bulunamadı' };
 
     return {
-        title: service.title,
-        description: `${SITE_CONFIG.name} - ${service.title}: ${service.shortDescription}`,
+        title: `${service.title} | ${SITE_CONFIG.name}`,
+        description: service.shortDescription,
     };
 }
 
-export default async function HizmetDetayPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const service = SERVICES.find(s => s.id === slug);
+    const service = SERVICES.find((s) => s.id === slug);
     const details = serviceDetails[slug];
 
     if (!service || !details) {
         notFound();
     }
 
-    // Diğer hizmetler
-    const otherServices = SERVICES.filter(s => s.id !== slug).slice(0, 3);
-
     return (
         <>
             <Header />
-            <main>
-                {/* Hero Section */}
-                <section className="page-hero">
-                    <div className="container">
-                        {/* Breadcrumb */}
-                        <nav className="flex items-center gap-2 text-sm text-[var(--color-text-muted)] mb-8">
-                            <Link href="/" className="hover:text-[var(--color-primary)]">Anasayfa</Link>
-                            <span>/</span>
-                            <Link href="/hizmetlerimiz" className="hover:text-[var(--color-primary)]">Hizmetlerimiz</Link>
-                            <span>/</span>
-                            <span className="text-[var(--color-text-primary)]">{service.title}</span>
-                        </nav>
+            <WhatsAppButton />
 
-                        <div className="grid lg:grid-cols-2 gap-12 items-center">
-                            <div>
-                                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-primary)]/5 flex items-center justify-center text-5xl mb-6">
-                                    {service.icon}
+            <main className={`min-h-screen bg-[var(--color-bg)] ${manrope.className}`}>
+                {/* 1. Immersive Hero Section */}
+                <section className="relative h-[85vh] w-full overflow-hidden flex items-end">
+                    {/* Background Image with Slow Zoom */}
+                    <div className="absolute inset-0 z-0">
+                        <div className="relative w-full h-full animate-kenburns">
+                            <NextImage
+                                src={service.image}
+                                alt={service.title}
+                                fill
+                                className="object-cover object-center brightness-50"
+                                priority
+                                sizes="100vw"
+                            />
+                        </div>
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-black/50 to-transparent" />
+                        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--color-bg)] to-transparent" />
+                    </div>
+
+                    {/* Hero Content */}
+                    <div className="container relative z-10 pb-20 md:pb-32">
+                        <div className="max-w-4xl">
+                            {/* Decorative Line */}
+                            <div className="w-24 h-1 bg-[var(--color-primary)] mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }} />
+
+                            <h1 className={`${playfair.className} text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight animate-fade-in-up`} style={{ animationDelay: '0.2s' }}>
+                                {service.title}
+                            </h1>
+
+                            <p className="text-xl md:text-2xl text-white/80 max-w-2xl font-light leading-relaxed mb-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                                {details.description}
+                            </p>
+
+                            <div className="flex flex-wrap items-center gap-6 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                                <div className="px-6 py-3 border border-white/20 rounded-full backdrop-blur-sm bg-white/5 flex items-center gap-3">
+                                    <span className="text-[var(--color-primary)]">⏱</span>
+                                    <span className="text-white/90 text-sm tracking-wider uppercase font-medium">{details.duration}</span>
                                 </div>
-                                <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-6">
-                                    {service.title}
-                                </h1>
-                                <p className="text-lg text-[var(--color-text-secondary)] mb-8">
-                                    {details.description}
-                                </p>
-
-                                {/* Quick Info */}
-                                <div className="flex flex-wrap gap-4 mb-8">
-                                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-bg-tertiary)]">
-                                        <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        <span className="text-sm text-[var(--color-text-secondary)]">{details.duration}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--color-secondary)]/10">
-                                        <span className="text-sm font-semibold text-[var(--color-secondary)]">{details.price}</span>
-                                    </div>
-                                </div>
-
-                                {/* CTA */}
-                                <div className="flex flex-col sm:flex-row gap-4">
-                                    <a
-                                        href={`${SITE_CONFIG.social.whatsapp}?text=${encodeURIComponent(`Merhaba, ${service.title} hizmeti hakkında bilgi almak istiyorum.`)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="btn btn-primary"
-                                    >
-                                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                                        </svg>
-                                        Randevu Al
-                                    </a>
-                                    <a href={`tel:${SITE_CONFIG.contact.phoneRaw}`} className="btn btn-outline">
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                        </svg>
-                                        Hemen Ara
-                                    </a>
-                                </div>
-                            </div>
-
-                            {/* Visual */}
-                            <div className="relative">
-                                <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-dark)] flex items-center justify-center">
-                                    <div className="text-8xl">{service.icon}</div>
+                                <div className="px-6 py-3 border border-white/20 rounded-full backdrop-blur-sm bg-white/5 flex items-center gap-3">
+                                    <span className="text-[var(--color-primary)]">🏷</span>
+                                    <span className="text-white/90 text-sm tracking-wider uppercase font-medium">{details.price}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Features & Process */}
-                <section className="section">
+                {/* 2. Process & Content Section */}
+                <section className="py-24 relative z-10">
                     <div className="container">
-                        <div className="grid lg:grid-cols-2 gap-12">
-                            {/* Features */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+
+                            {/* Left: Process Timeline */}
                             <div>
-                                <h2 className="text-2xl font-bold text-[var(--color-text-primary)] mb-6">
-                                    Hizmet Özellikleri
-                                </h2>
-                                <div className="space-y-3">
+                                <h3 className={`${playfair.className} text-3xl md:text-4xl text-white mb-12 flex items-center gap-4`}>
+                                    <span className="text-[var(--color-primary)] text-2xl">01</span>
+                                    Uygulama Süreci
+                                </h3>
+
+                                <div className="relative border-l border-white/10 pl-8 ml-4 space-y-12">
+                                    {details.process.map((step, index) => (
+                                        <div key={index} className="relative group">
+                                            {/* Dot with Pulse Effect */}
+                                            <div className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border border-[var(--color-primary)] bg-[var(--color-bg)] group-hover:bg-[var(--color-primary)] transition-colors duration-500 shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                                                {/* Strong Pulse Animation */}
+                                                <div className="absolute -inset-2 rounded-full bg-[var(--color-primary)] animate-ping opacity-40" style={{ animationDuration: '2s', animationDelay: `${index * 0.5}s` }} />
+
+                                                {/* Inner Glow */}
+                                                <div className="absolute inset-0 rounded-full bg-[var(--color-primary)] opacity-30 animate-pulse" style={{ animationDuration: '3s', animationDelay: `${index * 0.5}s` }} />
+                                            </div>
+
+                                            <div className="space-y-2">
+                                                <h4 className="text-xl text-white/90 font-medium group-hover:text-[var(--color-primary)] transition-colors duration-300">
+                                                    {step}
+                                                </h4>
+                                                <p className="text-white/40 text-sm leading-relaxed">
+                                                    Profesyonel ekipmanlar ve uzman dokunuşlarla gerçekleştirilen aşama.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Right: Premium Features Grid */}
+                            <div>
+                                <h3 className={`${playfair.className} text-3xl md:text-4xl text-white mb-12 flex items-center gap-4`}>
+                                    <span className="text-[var(--color-primary)] text-2xl">02</span>
+                                    Hizmet İçeriği
+                                </h3>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     {details.features.map((feature, index) => (
                                         <div
                                             key={index}
-                                            className="flex items-center gap-3 p-4 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)]"
+                                            className="group p-6 bg-white/[0.02] border border-white/5 hover:border-[var(--color-primary)]/30 rounded-xl transition-all duration-500 hover:bg-white/[0.05] hover:-translate-y-1"
                                         >
-                                            <div className="w-8 h-8 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)]">
-                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                </svg>
+                                            <div className="w-10 h-10 mb-4 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center group-hover:bg-[var(--color-primary)]/20 transition-colors">
+                                                <span className="text-[var(--color-primary)] text-xl">✦</span>
                                             </div>
-                                            <span className="text-[var(--color-text-secondary)]">{feature}</span>
+                                            <h5 className="text-white/90 text-lg font-medium mb-2 group-hover:text-white transition-colors">
+                                                {feature}
+                                            </h5>
                                         </div>
                                     ))}
                                 </div>
-                            </div>
 
-                            {/* Process */}
-                            <div>
-                                <h2 className="text-2xl font-bold text-[var(--color-text-primary)] mb-6">
-                                    Uygulama Süreci
-                                </h2>
-                                <div className="space-y-4">
-                                    {details.process.map((step, index) => (
-                                        <div key={index} className="flex gap-4">
-                                            <div className="w-10 h-10 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-white font-bold flex-shrink-0">
-                                                {index + 1}
-                                            </div>
-                                            <div className="flex-1 pt-2">
-                                                <p className="text-[var(--color-text-secondary)]">{step}</p>
-                                                {index < details.process.length - 1 && (
-                                                    <div className="w-0.5 h-6 bg-[var(--color-border)] ml-4 mt-2" />
-                                                )}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                                {/* Call to Action Box */}
+                                <div className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-[var(--color-primary)]/10 to-transparent border border-[var(--color-primary)]/20 text-center relative overflow-hidden group">
+                                    <div className="absolute inset-0 bg-[var(--color-primary)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Other Services */}
-                <section className="section bg-[var(--color-bg-secondary)]">
-                    <div className="container">
-                        <h2 className="text-2xl font-bold text-[var(--color-text-primary)] mb-8 text-center">
-                            Diğer Hizmetlerimiz
-                        </h2>
-                        <div className="grid md:grid-cols-3 gap-6">
-                            {otherServices.map(otherService => (
-                                <Link
-                                    key={otherService.id}
-                                    href={`/hizmetlerimiz/${otherService.id}`}
-                                    className="card p-6 group"
-                                >
-                                    <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center text-2xl mb-4">
-                                        {otherService.icon}
-                                    </div>
-                                    <h3 className="font-semibold text-[var(--color-text-primary)] mb-2 group-hover:text-[var(--color-primary)] transition-colors">
-                                        {otherService.title}
-                                    </h3>
-                                    <p className="text-sm text-[var(--color-text-muted)]">
-                                        {otherService.shortDescription}
+                                    <h4 className={`${playfair.className} text-2xl text-white mb-4 relative z-10`}>
+                                        Aracınıza Hak Ettiği Değeri Verin
+                                    </h4>
+                                    <p className="text-white/60 mb-8 relative z-10">
+                                        Hemen randevunuzu oluşturun, size özel ayrıcalıklı hizmetin keyfini çıkarın.
                                     </p>
-                                </Link>
-                            ))}
+
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+                                        <Link
+                                            href={SITE_CONFIG.social.whatsapp}
+                                            className="px-8 py-4 bg-[var(--color-primary)] text-black font-bold uppercase tracking-widest hover:bg-white transition-all duration-300 rounded-sm shadow-lg shadow-[var(--color-primary)]/20 hover:shadow-xl hover:scale-105"
+                                        >
+                                            Randevu Al
+                                        </Link>
+                                        <a
+                                            href={`tel:${SITE_CONFIG.contact.phoneRaw}`}
+                                            className="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-widest hover:bg-white/10 transition-all duration-300 rounded-sm"
+                                        >
+                                            Hemen Ara
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </section>
+
+                {/* Decorative Bottom Gradient */}
+                <div className="h-32 bg-gradient-to-b from-[var(--color-bg)] to-black relative z-10" />
             </main>
+
             <Footer />
-            <WhatsAppButton />
         </>
     );
 }

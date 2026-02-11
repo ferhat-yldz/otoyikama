@@ -4,101 +4,90 @@
  * ⚠️ ÖNEMLİ: Tüm renkleri buradan değiştirebilirsin!
  * Bu dosyayı düzenlediğinde tüm site otomatik güncellenecek.
  * 
- * Renk formatları:
- * - HEX: #1a1a2e
- * - RGB: rgb(26, 26, 46)
- * - HSL: hsl(240, 28%, 14%)
+ * DESIGN SYSTEM: "SILENT LUXURY"
  */
 
 export const THEME = {
     colors: {
         // ═══════════════════════════════════════════════════════════
-        // 🎨 ANA RENKLER (Primary)
-        // Ana marka renkleri - Butonlar, vurgular, önemli öğeler
+        // 🎨 ANA RENKLER (Primary) - Arctic Blue / Cyan
         // ═══════════════════════════════════════════════════════════
         primary: {
-            DEFAULT: "#0ea5e9",    // Ana mavi - Sky 500
-            light: "#38bdf8",      // Açık mavi - Sky 400
-            dark: "#0284c7",       // Koyu mavi - Sky 600
-            50: "#f0f9ff",
-            100: "#e0f2fe",
-            200: "#bae6fd",
-            300: "#7dd3fc",
-            400: "#38bdf8",
-            500: "#0ea5e9",
-            600: "#0284c7",
-            700: "#0369a1",
-            800: "#075985",
-            900: "#0c4a6e",
+            DEFAULT: "#00D2FF",    // Cyan / Electric Blue
+            light: "#5EEad4",      // Light Cyan
+            dark: "#0090B0",       // Dark Cyan
+            50: "#F0FDFA",
+            100: "#CCFBF1",
+            200: "#99F6E4",
+            300: "#5EEAD4",
+            400: "#2DD4BF",
+            500: "#14B8A6",
+            600: "#0D9488",
+            700: "#0F766E",
+            800: "#115E59",
+            900: "#134E4A",
         },
 
         // ═══════════════════════════════════════════════════════════
-        // 🔶 İKİNCİL RENKLER (Secondary)
-        // Vurgu renkleri - CTA butonları, özel öğeler
+        // 🔶 İKİNCİL RENKLER (Secondary) - Silver / Platinum
         // ═══════════════════════════════════════════════════════════
         secondary: {
-            DEFAULT: "#f59e0b",    // Turuncu/Altın - Amber 500
-            light: "#fbbf24",      // Açık turuncu - Amber 400
-            dark: "#d97706",       // Koyu turuncu - Amber 600
+            DEFAULT: "#E2E8F0",    // Silver / Platinum
+            light: "#F8FAFC",      // White Silver
+            dark: "#94A3B8",       // Dark Silver
         },
 
         // ═══════════════════════════════════════════════════════════
-        // 🌙 ARKA PLAN RENKLERİ (Background)
-        // Sayfa arka planları ve kartlar
+        // 🌙 ARKA PLAN RENKLERİ (Background) - Deep Matte Black
         // ═══════════════════════════════════════════════════════════
         background: {
-            DEFAULT: "#0f172a",    // Ana arka plan - Slate 900
-            secondary: "#1e293b",  // İkincil arka plan - Slate 800
-            tertiary: "#334155",   // Üçüncül arka plan - Slate 700
-            card: "#1e293b",       // Kart arka planı
-            cardHover: "#334155",  // Kart hover durumu
+            DEFAULT: "#0F1115",    // Deep Matte Black
+            secondary: "#181A20",  // Soft Black (Cards)
+            tertiary: "#23262F",   // Lighter Black
+            card: "#181A20",       // Card BG
+            cardHover: "#23262F",  // Card Hover
         },
 
         // ═══════════════════════════════════════════════════════════
         // 📝 METİN RENKLERİ (Text)
-        // Başlıklar, paragraflar, etiketler
         // ═══════════════════════════════════════════════════════════
         text: {
-            primary: "#f8fafc",    // Ana metin - Slate 50
-            secondary: "#cbd5e1",  // İkincil metin - Slate 300
-            muted: "#94a3b8",      // Soluk metin - Slate 400
-            inverse: "#0f172a",    // Ters metin (açık arka plan için)
+            primary: "#F8FAFC",    // Pure White
+            secondary: "#94A3B8",  // Silver Grey
+            muted: "#64748B",      // Deep Grey
+            inverse: "#0F1115",    // Black (for light controls)
         },
 
         // ═══════════════════════════════════════════════════════════
         // ✅ DURUM RENKLERİ (Status)
-        // Başarı, hata, uyarı mesajları
         // ═══════════════════════════════════════════════════════════
         status: {
-            success: "#22c55e",    // Yeşil - Green 500
-            error: "#ef4444",      // Kırmızı - Red 500
-            warning: "#f59e0b",    // Sarı - Amber 500
-            info: "#3b82f6",       // Mavi - Blue 500
+            success: "#10B981",    // Emerald
+            error: "#EF4444",      // Red
+            warning: "#F59E0b",    // Amber
+            info: "#3B82F6",       // Blue
         },
 
         // ═══════════════════════════════════════════════════════════
         // 🔲 BORDER & DIVIDER
-        // Çerçeveler ve ayırıcılar
         // ═══════════════════════════════════════════════════════════
         border: {
-            DEFAULT: "#334155",    // Varsayılan border - Slate 700
-            light: "#475569",      // Açık border - Slate 600
-            dark: "#1e293b",       // Koyu border - Slate 800
+            DEFAULT: "rgba(255, 255, 255, 0.08)", // Subtle Border
+            light: "rgba(255, 255, 255, 0.15)",   // Highlight Border
+            dark: "rgba(0, 0, 0, 0.2)",           // Dark Border
         },
 
         // ═══════════════════════════════════════════════════════════
         // 🌈 GRADIENT (Gradyan Renkleri)
-        // Hero section ve özel alanlar için
         // ═══════════════════════════════════════════════════════════
         gradient: {
-            from: "#0ea5e9",       // Başlangıç rengi
-            via: "#8b5cf6",        // Orta renk (opsiyonel)
-            to: "#f59e0b",         // Bitiş rengi
+            from: "#00D2FF",       // Cyan
+            via: "#5EEad4",        // Light Cyan
+            to: "#0090B0",         // Dark Cyan
         },
 
         // ═══════════════════════════════════════════════════════════
         // 🟢 WHATSAPP
-        // WhatsApp butonu için özel renkler
         // ═══════════════════════════════════════════════════════════
         whatsapp: {
             DEFAULT: "#25D366",
@@ -108,48 +97,45 @@ export const THEME = {
 
     // ═══════════════════════════════════════════════════════════
     // 📐 SPACING & SIZING
-    // Boşluklar ve boyutlar
     // ═══════════════════════════════════════════════════════════
     spacing: {
-        section: "80px",         // Section arası boşluk
-        sectionMobile: "48px",   // Mobil section boşluğu
-        container: "1280px",     // Max container genişliği
+        section: "120px",        // More whitespace for luxury feel
+        sectionMobile: "60px",
+        container: "1400px",     // Wider container
     },
 
     // ═══════════════════════════════════════════════════════════
     // 🔤 TYPOGRAPHY
-    // Font aileleri ve boyutları
     // ═══════════════════════════════════════════════════════════
     fonts: {
-        heading: "'Inter', sans-serif",
-        body: "'Inter', sans-serif",
+        heading: "'Playfair Display', serif", // Luxury Serif
+        body: "'Manrope', sans-serif",        // Modern Sans
     },
 
     // ═══════════════════════════════════════════════════════════
     // 🎭 EFFECTS
-    // Gölgeler ve efektler
     // ═══════════════════════════════════════════════════════════
     effects: {
         shadow: {
-            sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-            DEFAULT: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-            md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
-            lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-            xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-            glow: "0 0 20px rgba(14, 165, 233, 0.3)",
+            sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+            DEFAULT: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+            md: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+            lg: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+            xl: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+            glow: "0 0 30px rgba(212, 175, 55, 0.15)", // Gold Glow
         },
         borderRadius: {
-            sm: "4px",
-            DEFAULT: "8px",
-            md: "12px",
-            lg: "16px",
-            xl: "24px",
+            sm: "2px",
+            DEFAULT: "4px", // Sharper corners for luxury
+            md: "8px",
+            lg: "12px",
+            xl: "16px",
             full: "9999px",
         },
         transition: {
-            fast: "150ms ease",
-            DEFAULT: "300ms ease",
-            slow: "500ms ease",
+            fast: "200ms cubic-bezier(0.4, 0, 0.2, 1)",
+            DEFAULT: "400ms cubic-bezier(0.4, 0, 0.2, 1)",
+            slow: "700ms cubic-bezier(0.4, 0, 0.2, 1)", // Slower, smoother transitions
         },
     },
 } as const;
@@ -170,15 +156,20 @@ export const CSS_VARIABLES = `
     /* Background Colors */
     --color-bg: ${THEME.colors.background.DEFAULT};
     --color-bg-secondary: ${THEME.colors.background.secondary};
+    --color-bg-tertiary: ${THEME.colors.background.tertiary};
     --color-bg-card: ${THEME.colors.background.card};
+    --color-bg-card-hover: ${THEME.colors.background.cardHover};
     
     /* Text Colors */
     --color-text-primary: ${THEME.colors.text.primary};
     --color-text-secondary: ${THEME.colors.text.secondary};
     --color-text-muted: ${THEME.colors.text.muted};
+    --color-text-inverse: ${THEME.colors.text.inverse};
     
     /* Border Colors */
     --color-border: ${THEME.colors.border.DEFAULT};
+    --color-border-light: ${THEME.colors.border.light};
+    --color-border-dark: ${THEME.colors.border.dark};
     
     /* WhatsApp */
     --color-whatsapp: ${THEME.colors.whatsapp.DEFAULT};

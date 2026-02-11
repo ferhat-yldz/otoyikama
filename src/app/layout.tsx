@@ -1,17 +1,24 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Playfair_Display, Manrope } from 'next/font/google';
 import './globals.css';
 import { SITE_CONFIG } from '@/constants';
+import Loading from '@/components/ui/Loading';
 
-// Inter font - Modern ve okunabilir
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin', 'latin-ext'],
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-manrope',
   display: 'swap',
 });
 
 // SEO Metadata
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_CONFIG.url),
   // Temel Bilgiler
   title: {
     default: `${SITE_CONFIG.name} | ${SITE_CONFIG.contact.city} Profesyonel Oto Yıkama`,
@@ -159,20 +166,38 @@ function JsonLdSchema() {
   );
 }
 
+import { Suspense } from 'react';
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
+import CookieConsent from '@/components/ui/CookieConsent';
+import { FloatingActionPanel } from '@/components/layout';
+import PageTransition from '@/components/layout/PageTransition';
+
+// ... (imports remain the same)
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" className={inter.variable}>
+    <html lang="tr" className={`${manrope.variable} ${playfair.variable}`}>
       <head>
         <JsonLdSchema />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/images/LOGO.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/LOGO.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="font-sans bg-[var(--color-bg)] text-[var(--color-text-primary)] antialiased selection:bg-[var(--color-primary)] selection:text-white overflow-x-hidden">
+        <Loading />
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
+        <PageTransition>
+          {children}
+        </PageTransition>
+        <FloatingActionPanel />
+        <CookieConsent />
+      </body>
     </html>
   );
 }

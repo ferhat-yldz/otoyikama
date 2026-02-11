@@ -75,9 +75,12 @@ export function getOptimizedImageUrl(url: string, width?: number): string {
     return url;
 }
 
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
 /**
- * CSS class'larını birleştirir (conditional classes için)
+ * Performanslı ve conflict-free class birleştirme
  */
-export function cn(...classes: (string | undefined | null | false)[]): string {
-    return classes.filter(Boolean).join(' ');
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs));
 }
