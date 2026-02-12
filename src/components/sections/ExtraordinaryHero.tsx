@@ -158,7 +158,7 @@ export function ExtraordinaryHero() {
                     className="group relative px-8 py-4 bg-black/30 backdrop-blur-md border border-white/20 text-white font-bold uppercase tracking-widest text-xs md:text-sm rounded-full overflow-hidden transition-all hover:bg-white/10 hover:border-white/40 w-full md:w-auto text-center"
                 >
                     <span className="relative z-10 flex items-center justify-center gap-2">
-                        İletişime Geç
+                        0533 067 66 46
                         <svg className="w-4 h-4 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>

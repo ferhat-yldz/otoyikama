@@ -48,6 +48,22 @@ export const SITE_CONFIG = {
 
     // SEO
     seo: {
+        keywords: [
+            "malatya oto yıkama",
+            "betsan oto yıkama",
+            "yeşilyurt oto yıkama",
+            "battalgazi oto yıkama",
+            "malatya araç yıkama",
+            "malatya oto detaylı temizlik",
+            "pasta cila malatya",
+            "seramik kaplama malatya",
+            "malatya seramik kaplama fiyatları",
+            "oto koltuk yıkama malatya",
+            "detaylı iç temizlik malatya",
+            "far temizliği malatya",
+            "motor yıkama malatya",
+            "profesyonel araç bakımı malatya",
+        ],
         locale: "tr_TR",
         type: "website",
     },
