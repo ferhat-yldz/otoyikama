@@ -153,17 +153,17 @@ export function ExtraordinaryHero() {
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 </Link>
 
-                <Link
-                    href="/iletisim"
+                <a
+                    href="tel:05330676646"
                     className="group relative px-8 py-4 bg-black/30 backdrop-blur-md border border-white/20 text-white font-bold uppercase tracking-widest text-xs md:text-sm rounded-full overflow-hidden transition-all hover:bg-white/10 hover:border-white/40 w-full md:w-auto text-center"
                 >
                     <span className="relative z-10 flex items-center justify-center gap-2">
                         0533 067 66 46
                         <svg className="w-4 h-4 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                     </span>
-                </Link>
+                </a>
             </div>
         </section>
     );
